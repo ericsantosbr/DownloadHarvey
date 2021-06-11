@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 driver = webdriver.Firefox()
-driver.get('https://redecanais.cloud/browse-1-temporada-harvey-o-advogado-videos-1-date.html')
+driver.get('https://redecanais.cloud/harvey-o-advogado-dublado-lista-de-episodios_8838ff667.html')
 
 downloadDriver = webdriver.Firefox()
 
@@ -13,12 +13,13 @@ try:
 	element = WebDriverWait(driver, 10)
 
 finally:
-	elementos = driver.find_elements_by_class_name('caption')
-	paginas = driver.find_element_by_class_name('pagination pagination-sm pagination-arrows')
-	aElement = elementos[0].find_elements_by_tag_name('a')
-	for element in elementos:
-		print(element.find_element_by_tag_name('a').get_attribute('href'))
-		WebDriverWait(driver, 5)
-		downloadDriver.get(element.find_element_by_tag_name('a').get_attribute('href'))
+	# for i in range(1, 50):
+	watch_episode_button = driver.find_element_by_xpath(f'/html/body/div[2]/div[5]/div[1]/div/div[1]/div[3]/p/a[{1}]')
+	new_page = watch_episode_button.click()
+	# new_page.then()
+
+	print(driver.window_handles)
+
+	WebDriverWait(driver, 30)
 	driver.quit()
 	downloadDriver.quit()
